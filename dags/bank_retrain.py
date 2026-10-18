@@ -4,7 +4,7 @@ from airflow.providers.cncf.kubernetes.operators.pod import KubernetesPodOperato
 from airflow.sdk import CronTriggerTimetable, Param, dag, task
 from kubernetes.client import models as k8s
 
-PULL = "uv run --no-sync dvc pull -r cluster datasets/bank_additional_pre.csv && "
+PULL = "uv run --no-sync dvc pull -r cluster datasets\bank_additional_pre_quickstart.csv && "
 COMMON = dict(namespace = "mlops", in_cluster = True, 
         image = "{{ var.value.bank_image }}", image_pull_policy = "IfNotPresent",
         get_logs = True, on_finish_action = "delete_pod")
@@ -22,7 +22,8 @@ def bank_retrain():
         task_id = "validate",
         name = "bank-validate",
         env_vars = {
-            "MLFLOW_TRACKING_URI": "http://mlflow.mlops:5000"
+            "MLFLOW_TRACKING_URI": "http://mlflow.mlops:5000",
+            "DATA_PATH": "datasets/bank_additional_pre_quickstart.csv"
         },
         env_from = [
             k8s.V1EnvFromSource(secret_ref=k8s.V1SecretEnvSource(name="s3-credentials"))
@@ -47,6 +48,7 @@ def bank_retrain():
         ],
         env_vars = {
             "MLFLOW_TRACKING_URI": "http://mlflow.mlops:5000",
+            "DATA_PATH": "datasets/bank_additional_pre_quickstart.csv",
             "DEPTH": "{{ params.DEPTH }}"
         },
         env_from = [
