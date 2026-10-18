@@ -4,7 +4,7 @@ from airflow.providers.cncf.kubernetes.operators.pod import KubernetesPodOperato
 from airflow.sdk import CronTriggerTimetable, Param, dag, task
 from kubernetes.client import models as k8s
 
-PULL = "uv run --no-sync dvc pull -r cluster datasets\bank_additional_pre_quickstart.csv && "
+PULL = "uv run --no-sync dvc pull -r cluster datasets/bank_additional_pre_quickstart.csv && "
 COMMON = dict(namespace = "mlops", in_cluster = True, 
         image = "{{ var.value.bank_image }}", image_pull_policy = "IfNotPresent",
         get_logs = True, on_finish_action = "delete_pod")
