@@ -25,7 +25,7 @@ from sklearn.model_selection import train_test_split
 
 DATA_PATH = Path(os.getenv("DATA_PATH", 'datasets/bank_additional_pre.csv'))
 MODEL_NAME = os.getenv("MODEL_NAME", 'bank_model')
-EXPERIMENT_NAME = os.getenv("EXPERIMENT_NAME", 'bank_experiment_airflow')
+EXPERIMENT_NAME = os.getenv("EXPERIMENT_NAME", 'bank_experiment')
 
 ITERATIONS = int(os.getenv("ITERATIONS", "1000"))
 LEARNING_RATE = float(os.getenv("LEARNING_RATE", "0.05"))

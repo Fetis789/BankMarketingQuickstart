@@ -9,7 +9,7 @@ import pandas as pd
 import pandera.pandas as pa
 
 RAW_PATH = Path(os.getenv("DATA_PATH", 'datasets/bank_additional_pre.csv'))
-EXPERIMENT_NAME = os.getenv("EXPERIMENT_NAME", 'bank_experiment_airflow')
+EXPERIMENT_NAME = os.getenv("EXPERIMENT_NAME", 'bank_experiment')
 
 # Правила для каждой строки
 ROWS = pa.DataFrameSchema(
