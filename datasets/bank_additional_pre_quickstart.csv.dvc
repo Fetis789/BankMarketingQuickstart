@@ -1,0 +1,5 @@
+outs:
+- md5: df8637b5f359d41d372105f53ba9952e
+  size: 2946929
+  hash: md5
+  path: bank_additional_pre_quickstart.csv
